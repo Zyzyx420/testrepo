@@ -1,0 +1,28 @@
+name: Simple CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Step 2: Run a simple validation (e.g., check if file exists)
+      - name: Validate File Exists
+        run: |
+          if [ ! -f "testfile.html" ]; then
+            echo "File testfile.html is missing!"
+            exit 1
+          fi
+          echo "File testfile.html found!"
+
+      # Step 3: Simulate Deployment
+      - name: Deploy (Simulated)
+        run: echo "Deployment successful for file testfile.html!"
